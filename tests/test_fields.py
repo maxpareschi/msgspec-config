@@ -5,9 +5,9 @@ from typing import Annotated, get_args, get_origin
 import pytest
 from msgspec import Meta
 
-from msgspec_settings import DataModel, entry, group
-import msgspec_settings.fields as _fields
-from msgspec_settings.fields import EntryInfo
+from msgspec_config import DataModel, entry, group
+import msgspec_config.fields as _fields
+from msgspec_config.fields import EntryInfo
 
 
 def test_entry_no_kwargs_returns_field_default() -> None:

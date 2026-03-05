@@ -6,14 +6,14 @@ import msgspec
 import pytest
 from msgspec import Meta
 
-from msgspec_settings.mapping import (
+from msgspec_config.mapping import (
     flatten_model_fields_with_alias,
     map_env_to_model,
     split_mapping_by_model_fields,
     split_top_level_mapping_by_model_fields,
 )
-from msgspec_settings.merge import dedupe_keep_order, deep_merge_into, set_nested
-from msgspec_settings.typing import (
+from msgspec_config.merge import dedupe_keep_order, deep_merge_into, set_nested
+from msgspec_config.typing import (
     _COERCE_FAILED,
     coerce_env_value,
     get_struct_subtype,

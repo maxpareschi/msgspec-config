@@ -1,4 +1,4 @@
-"""Core model and source abstractions for ``msgspec_settings``.
+"""Core model and source abstractions for ``msgspec_config``.
 
 This module defines:
 - :class:`DataModel`, the typed configuration container.

@@ -6,7 +6,7 @@ venv:
 	uv sync
 
 docs:
-	uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-settings-logo.svg --logo assets/msgspec-settings-logo.svg --search -t ./docs --show-source msgspec_settings
+	uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-config-logo.svg --logo assets/msgspec-config-logo.svg --search -t ./docs --show-source msgspec_config
 
 ruff:
 	uv run ruff format .

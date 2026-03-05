@@ -1,5 +1,5 @@
 [project]
-name = "msgspec-settings"
+name = "msgspec-config"
 version = "0.1.0"
 description = "A Settings library using msgspec as a backend for validation and serialization."
 readme = "README.md"
@@ -17,12 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "Topic :: Software Development :: Libraries",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Software Development :: Libraries :: Application Frameworks",
-    "Topic :: Software Development :: Libraries :: Application Frameworks :: Msgspec",
-    "Topic :: Software Development :: Libraries :: Application Frameworks :: Click",
-    "Topic :: Software Development :: Libraries :: Application Frameworks :: Rich",
+    "Topic :: Software Development :: Libraries"
 ]
 
 dependencies = [
@@ -33,9 +28,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/maxpareschi/msgspec-settings"
-Issues = "https://github.com/maxpareschi/msgspec-settings/issues"
-Docs = "https://maxpareschi.github.io/msgspec-settings"
+Homepage = "https://github.com/maxpareschi/msgspec-config"
+Issues = "https://github.com/maxpareschi/msgspec-config/issues"
+Docs = "https://maxpareschi.github.io/msgspec-config"
 
 [dependency-groups]
 dev = [
@@ -60,7 +55,7 @@ include-package-data = false
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["msgspec_settings*"]
+include = ["msgspec_config*"]
 exclude = ["tests*"]
 namespaces = false
 

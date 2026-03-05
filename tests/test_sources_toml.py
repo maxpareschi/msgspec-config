@@ -5,7 +5,7 @@ from pathlib import Path
 import msgspec
 import pytest
 
-from msgspec_settings import TomlSource
+from msgspec_config import TomlSource
 
 
 def test_empty_path_returns_empty() -> None:

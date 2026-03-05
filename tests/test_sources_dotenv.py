@@ -5,7 +5,7 @@ from pathlib import Path
 import msgspec
 import pytest
 
-from msgspec_settings import DotEnvSource, EnvironSource, DataModel, datasources
+from msgspec_config import DotEnvSource, EnvironSource, DataModel, datasources
 
 from ._models import ServerModel, SimpleModel
 
@@ -163,7 +163,7 @@ def test_dotenv_os_error_raises_runtime_error(
         raise OSError("read error")
 
     monkeypatch.setattr(
-        "msgspec_settings.sources.dotenv.parse_dotenv_file", _raise_os_error
+        "msgspec_config.sources.dotenv.parse_dotenv_file", _raise_os_error
     )
     src = DotEnvSource(dotenv_path=str(dotenv_path), env_prefix="APP")
     with pytest.raises(RuntimeError, match="Failed to read dotenv"):

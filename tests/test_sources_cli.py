@@ -7,8 +7,8 @@ import msgspec
 import pytest
 from msgspec import Meta
 
-from msgspec_settings import CliSource
-from msgspec_settings.sources import cli as _cli_mod
+from msgspec_config import CliSource
+from msgspec_config.sources import cli as _cli_mod
 
 from ._models import (
     BoolLiteralModel,

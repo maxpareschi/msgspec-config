@@ -5,7 +5,7 @@ from pathlib import Path
 import msgspec
 import pytest
 
-from msgspec_settings import YamlSource
+from msgspec_config import YamlSource
 
 
 def test_empty_path_returns_empty() -> None:

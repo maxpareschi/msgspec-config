@@ -5,7 +5,7 @@ from pathlib import Path
 import msgspec
 import pytest
 
-from msgspec_settings import JSONSource
+from msgspec_config import JSONSource
 
 
 def test_empty_source_returns_empty() -> None:

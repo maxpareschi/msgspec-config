@@ -3,8 +3,8 @@
 import pytest
 import msgspec
 
-from msgspec_settings import EnvironSource
-from msgspec_settings.mapping import map_env_to_model
+from msgspec_config import EnvironSource
+from msgspec_config.mapping import map_env_to_model
 
 from ._models import (
     BoolLiteralModel,

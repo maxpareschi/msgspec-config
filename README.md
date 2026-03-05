@@ -1,13 +1,13 @@
 
 <p align="center">
-    <img src="docs/assets/msgspec-settings-logo.svg" width="35%" alt="msgspec-settings">
+    <img src="docs/assets/msgspec-config-logo.svg" width="35%" alt="msgspec-config">
 </p>
 
-# msgspec-settings
+# msgspec-config
 
 Typed, multi-source configuration loading on top of `msgspec`.
 
-`msgspec-settings` is for applications that need:
+`msgspec-config` is for applications that need:
 - one typed model for configuration shape
 - multiple config inputs (files, `.env`, environment, CLI, custom providers)
 - deterministic precedence across all inputs
@@ -17,16 +17,16 @@ The core idea is simple: define one `DataModel`, attach ordered `DataSource`s, a
 
 ## API Docs
 Please visit the API docs at this project's github pages site:
-<a href="https://maxpareschi.github.io/msgspec-settings">https://maxpareschi.github.io/msgspec-settings/</a>
+<a href="https://maxpareschi.github.io/msgspec-config">https://maxpareschi.github.io/msgspec-config/</a>
 
 ## Installation
 
 ```bash
-pip install msgspec-settings
+pip install msgspec-config
 ```
 
 ```bash
-uv add msgspec-settings
+uv add msgspec-config
 ```
 
 Tested on `Python>=3.13`, probably works also on `Python>=3.11`.
@@ -50,7 +50,7 @@ APP_LOG_LEVEL=DEBUG
 ```
 
 ```python
-from msgspec_settings import (
+from msgspec_config import (
     APISource,
     CliSource,
     DataModel,
@@ -118,7 +118,7 @@ Why it exists:
 - supports extra UI/schema keys: `hidden_if`, `disabled_if`, `parent_group`, `ui_component`
 
 ```python
-from msgspec_settings import DataModel, entry
+from msgspec_config import DataModel, entry
 
 
 class ApiConfig(DataModel):
@@ -135,7 +135,7 @@ Why it exists:
 - adds optional UI/schema hints (`collapsed`, `mutable`)
 
 ```python
-from msgspec_settings import DataModel, group
+from msgspec_config import DataModel, group
 
 
 class Child(DataModel):
@@ -154,7 +154,7 @@ Notes:
 
 ## Built-in Sources (Behavior)
 
-All built-ins are importable from both `msgspec_settings` and `msgspec_settings.sources`.
+All built-ins are importable from both `msgspec_config` and `msgspec_config.sources`.
 
 When a source is used with `resolve(model=...)` (or through `@datasources(...)` on a
 `DataModel`), field resolution accepts both canonical and encoded/alias names, and mapped
@@ -246,7 +246,7 @@ When built-ins are not enough, implement `DataSource.load(...)`.
 ```python
 from typing import Any
 
-from msgspec_settings import DataModel, DataSource, datasources
+from msgspec_config import DataModel, DataSource, datasources
 
 
 class SecretsSource(DataSource):
@@ -334,7 +334,7 @@ venv -> ruff -> test -> docs
 
 Makefile targets:
 - `make venv`: `uv sync`
-- `make docs`: `uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-settings-logo.svg --logo assets/msgspec-settings-logo.svg --search -t ./docs --show-source msgspec_settings`
+- `make docs`: `uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-config-logo.svg --logo assets/msgspec-config-logo.svg --search -t ./docs --show-source msgspec_config`
 - `make ruff`: `uv run ruff format .` and `uv run ruff check --fix .`
 - `make test`: `uv run pytest`
 - `make build`: `uv build --clear --no-sources`
@@ -348,7 +348,7 @@ uv sync
 uv run ruff format .
 uv run ruff check --fix .
 uv run pytest
-uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-settings-logo.svg --logo assets/msgspec-settings-logo.svg --search -t ./docs --show-source msgspec_settings
+uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-config-logo.svg --logo assets/msgspec-config-logo.svg --search -t ./docs --show-source msgspec_config
 uv build --clear --no-sources
 ```
 
@@ -375,5 +375,5 @@ make publish-pypi
 ```
 
 Packaging policy:
-- wheel: runtime package only (`msgspec_settings`)
+- wheel: runtime package only (`msgspec_config`)
 - sdist: includes source, tests, and docs metadata for downstream builds/tests

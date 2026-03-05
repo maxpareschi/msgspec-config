@@ -5,7 +5,7 @@ from urllib.error import URLError
 import msgspec
 import pytest
 
-from msgspec_settings import APISource
+from msgspec_config import APISource
 
 
 class _FakeResponse:
@@ -40,7 +40,7 @@ def test_load_valid_api_json(monkeypatch: pytest.MonkeyPatch) -> None:
         assert getattr(request, "full_url") == "https://example.test/config"
         return _FakeResponse(b'{"host":"api.example.com","port":9000}')
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     data = APISource(api_url="https://example.test/config", timeout_seconds=5.0).load()
     assert data["host"] == "api.example.com"
@@ -56,7 +56,7 @@ def test_optional_header_is_attached(monkeypatch: pytest.MonkeyPatch) -> None:
             captured_headers[key.lower()] = value
         return _FakeResponse(b'{"ok":true}')
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     APISource(
         api_url="https://example.test/config",
@@ -82,7 +82,7 @@ def test_root_node_unwraps_response_mapping(monkeypatch: pytest.MonkeyPatch) -> 
     def fake_urlopen(request: object, timeout: float) -> _FakeResponse:
         return _FakeResponse(b'{"data":{"host":"wrapped.example.com","port":7000}}')
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     data = APISource(
         api_url="https://example.test/config",
@@ -99,7 +99,7 @@ def test_missing_root_node_returns_empty(monkeypatch: pytest.MonkeyPatch) -> Non
     def fake_urlopen(request: object, timeout: float) -> _FakeResponse:
         return _FakeResponse(b'{"meta":{"ok":true}}')
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     assert (
         APISource(api_url="https://example.test/config", root_node="data").load() == {}
@@ -112,7 +112,7 @@ def test_failed_request_raises_runtime_error(monkeypatch: pytest.MonkeyPatch) ->
     def fake_urlopen(request: object, timeout: float) -> _FakeResponse:
         raise URLError("boom")
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     src = APISource(api_url="https://example.test/config")
     with pytest.raises(RuntimeError, match="Failed to fetch API endpoint"):
@@ -125,7 +125,7 @@ def test_invalid_json_raises_runtime_error(monkeypatch: pytest.MonkeyPatch) -> N
     def fake_urlopen(request: object, timeout: float) -> _FakeResponse:
         return _FakeResponse(b"{broken")
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     src = APISource(api_url="https://example.test/config")
     with pytest.raises(RuntimeError, match="Failed to parse API response JSON"):
@@ -149,7 +149,7 @@ def test_unmapped_api_keys_are_stored_on_source(
             b'{"host":"api.example.com","unknown":1,"log":{"level":"DEBUG","levle":"typo"}}'
         )
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     src = APISource(api_url="https://example.test/config")
     data = src.resolve(model=Model)
@@ -173,7 +173,7 @@ def test_api_alias_fields_are_supported_on_resolve(
     def fake_urlopen(request: object, timeout: float) -> _FakeResponse:
         return _FakeResponse(b'{"port":9000,"log":{"level":"WARN"}}')
 
-    monkeypatch.setattr("msgspec_settings.sources.api.urlopen", fake_urlopen)
+    monkeypatch.setattr("msgspec_config.sources.api.urlopen", fake_urlopen)
 
     data = APISource(api_url="https://example.test/config").resolve(model=AliasModel)
     assert data == {"PORT_NUMBER": 9000, "LOGGER": {"LEV": "WARN"}}

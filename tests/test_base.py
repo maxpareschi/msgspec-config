@@ -5,7 +5,7 @@ from typing import Any
 import msgspec
 import pytest
 
-from msgspec_settings import DataModel, DataSource, datasources
+from msgspec_config import DataModel, DataSource, datasources
 
 
 class _StaticSource(DataSource):

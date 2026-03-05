@@ -11,7 +11,7 @@ from rich.table import Table
 from rich.pretty import Pretty
 from rich import box
 
-from msgspec_settings import DataModel, datasources, entry, group, TomlSource, CliSource
+from msgspec_config import DataModel, datasources, entry, group, TomlSource, CliSource
 
 
 sources = (

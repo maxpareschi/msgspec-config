@@ -14,7 +14,7 @@
   </defs>
   <g transform="matrix(1, 0, 0, 1, 11.972721, 86.309792)">
     <rect x="-7.553" y="-81.933" width="160.16" height="131.679" style="stroke: rgb(0, 0, 0); stroke-width: 0px;" rx="8" ry="8"/>
-    <text style="font-family: Cascadia, &quot;Segoe UI Emoji&quot;; font-size: 18.7px; white-space: pre;" x="1.232"><tspan style="fill: rgb(255, 255, 255); font-size: 18.7px; word-spacing: 0px;" x="0.369" y="34.777">msgspec</tspan><tspan style="fill: rgb(0, 184, 255); font-size: 18.7px; word-spacing: 0px;">-settings</tspan></text>
+    <text style="font-family: Cascadia, &quot;Segoe UI Emoji&quot;; font-size: 18.7px; white-space: pre;" x="7.232"><tspan style="fill: rgb(255, 255, 255); font-size: 18.7px; word-spacing: 0px;" x="6.369" y="34.777">msgspec</tspan><tspan style="fill: rgb(0, 184, 255); font-size: 18.7px; word-spacing: 0px;">-config</tspan></text>
   </g>
   <g stroke-linecap="round" transform="matrix(1, 0, 0, 1, 0, 7)">
     <g transform="translate(18.219822008405913 70.7359699156257) rotate(0 18.679500247428393 -7.904308335528441)">
