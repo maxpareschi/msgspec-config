@@ -1,23 +1,26 @@
 [project]
 name = "msgspec-settings"
 version = "0.1.0"
-description = "An Options library using msgspec as a backend for validation and serialization."
+description = "A Settings library using msgspec as a backend for validation and serialization."
 readme = "README.md"
 requires-python = ">=3.13"
 
 keywords = ["Settings", "CLI", "Configuration", "Validation", "Serialization", "msgspec"]
 authors = [
-    {name = "Massimiliano Pareschi", email = "max.pareschi@gmail.com"}
+    {name = "Max Pareschi", email = "max.pareschi@gmail.com"}
 ]
 
 classifiers = [
-    "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Application Frameworks :: Msgspec",
     "Topic :: Software Development :: Libraries :: Application Frameworks :: Click",
     "Topic :: Software Development :: Libraries :: Application Frameworks :: Rich",
 ]
@@ -29,6 +32,11 @@ dependencies = [
     "rich-click>=1.9.6",
 ]
 
+[project.urls]
+Homepage = "https://github.com/maxpareschi/msgspec-settings"
+Issues = "https://github.com/maxpareschi/msgspec-settings/issues"
+Docs = "https://maxpareschi.github.io/msgspec-settings"
+
 [dependency-groups]
 dev = [
     "pdoc>=16.0.0",
@@ -37,13 +45,25 @@ dev = [
     "ruff>=0.14.14",
 ]
 
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
+
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = false
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["msgspec_settings", "msgspec_settings.*"]
+include = ["msgspec_settings*"]
+exclude = ["tests*"]
+namespaces = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+

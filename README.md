@@ -29,7 +29,7 @@ pip install msgspec-settings
 uv add msgspec-settings
 ```
 
-Tested on `Python>=3.13`
+Tested on `Python>=3.13`, probably works also on `Python>=3.11`.
 
 ## Quick Start (Layered Config)
 
@@ -302,13 +302,78 @@ print(AppConfig.model_json_schema(indent=2))
 - `group(...)`: helper for grouped object/list/dict fields
 - built-ins: `TomlSource`, `YamlSource`, `JSONSource`, `DotEnvSource`, `EnvironSource`, `CliSource`, `APISource`
 
-## Development
+## Development (Makefile + Commands)
 
-Run tests:
+The repository includes a `Makefile` to standardize common local tasks. Run targets from the project root.
+
+Prerequisites:
+- `uv`
+- GNU Make (`make`)
+- on Windows, use a GNU Make provider (for example Git Bash `make` or `mingw32-make`)
+
+Typical workflow:
 
 ```bash
-python -m pytest -q
+make venv   # install/update dependencies from lockfile
+make ruff   # format + lint autofix
+make test   # run tests
+make docs   # regenerate docs in ./docs
 ```
+
+Run the full local pipeline:
+
 ```bash
-uv run pytest -q
+make all
 ```
+
+`all` expands to:
+
+```text
+venv -> ruff -> test -> docs
+```
+
+Makefile targets:
+- `make venv`: `uv sync`
+- `make docs`: `uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-settings-logo.svg --logo assets/msgspec-settings-logo.svg --search -t ./docs --show-source msgspec_settings`
+- `make ruff`: `uv run ruff format .` and `uv run ruff check --fix .`
+- `make test`: `uv run pytest`
+- `make build`: `uv build --clear --no-sources`
+- `make publish-testpypi`: runs `make build`, then `uv publish --index testpypi`
+- `make publish-pypi`: runs `make build`, then `uv publish`
+
+Equivalent direct commands (without `make`):
+
+```bash
+uv sync
+uv run ruff format .
+uv run ruff check --fix .
+uv run pytest
+uv run pdoc -o ./docs --docformat google --favicon assets/msgspec-settings-logo.svg --logo assets/msgspec-settings-logo.svg --search -t ./docs --show-source msgspec_settings
+uv build --clear --no-sources
+```
+
+## Release (uv)
+
+Build clean artifacts:
+
+```bash
+make build
+```
+
+Publish to TestPyPI first:
+
+```bash
+$env:UV_PUBLISH_TOKEN="pypi-<testpypi-token>"
+make publish-testpypi
+```
+
+Publish to PyPI:
+
+```bash
+$env:UV_PUBLISH_TOKEN="pypi-<pypi-token>"
+make publish-pypi
+```
+
+Packaging policy:
+- wheel: runtime package only (`msgspec_settings`)
+- sdist: includes source, tests, and docs metadata for downstream builds/tests

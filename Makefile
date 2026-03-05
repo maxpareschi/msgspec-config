@@ -1,4 +1,4 @@
-.PHONY: all venv docs ruff test
+.PHONY: all venv docs ruff test build publish-testpypi publish-pypi
 
 all: venv ruff test docs
 
@@ -14,3 +14,12 @@ ruff:
 
 test:
 	uv run pytest
+
+build:
+	uv build --clear --no-sources
+
+publish-testpypi: build
+	uv publish --index testpypi
+
+publish-pypi: build
+	uv publish
