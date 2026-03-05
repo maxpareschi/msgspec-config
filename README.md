@@ -15,6 +15,10 @@ Typed, multi-source configuration loading on top of `msgspec`.
 
 The core idea is simple: define one `DataModel`, attach ordered `DataSource`s, and instantiate the model.
 
+## API Docs
+Please visit the API docs at this project's github pages site:
+<a href="https://maxpareschi.github.io/msgspec-settings">https://maxpareschi.github.io/msgspec-settings/</a>
+
 ## Installation
 
 ```bash
