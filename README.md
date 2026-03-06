@@ -29,7 +29,7 @@ pip install msgspec-config
 uv add msgspec-config
 ```
 
-Tested on `Python>=3.13`, probably works also on `Python>=3.11`.
+Tested on `Python>=3.11`
 
 ## Quick Start (Layered Config)
 
